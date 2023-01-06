@@ -1,25 +1,17 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+const { connectDB } = require("./config/db");
+const urlroutes = require("./routes/url");
 require("dotenv").config();
 
 //middlewares
 app.use(express.json());
 
-//mongoose connection
-mongoose.connect(process.env.MONGOURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+//Database connection
+connectDB();
 
-mongoose.connection.on("connected", () => {
-  console.log("connected to mongo");
-});
-mongoose.connection.on("error", () => {
-  console.log("error connecting to mongo");
-  //exit
-  process.exit(1);
-});
+//routes
+app.use("/api/v1/", urlroutes);
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Server is runnng at port", process.env.PORT);
