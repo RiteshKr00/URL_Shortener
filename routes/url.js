@@ -92,7 +92,7 @@ router.post("/short", async (req, res) => {
         .status(409)
         .json({ message: "link already exist", url: findUrl });
     }
-    const shortUrl = `${base}/${urlId}`;
+    const shortUrl = `${base}/api/v1/url/${urlId}`;
     const newShortUrl = await new Url({
       urlId,
       originalUrl: url,
@@ -145,7 +145,7 @@ router.post("/singleUse", async (req, res) => {
         .status(409)
         .json({ message: "link already exist", url: findUrl });
     }
-    const shortUrl = `${base}/${urlId}`;
+    const shortUrl = `${base}/api/v1/url/${urlId}`;
     const newShortUrl = await new Url({
       urlId,
       originalUrl: url,
@@ -256,7 +256,7 @@ router.post("/auth/short", isAuthenticated, async (req, res) => {
         .status(409)
         .json({ message: "link already exist", url: findUrl });
     }
-    const shortUrl = `${base}/${urlId}`;
+    const shortUrl = `${base}/api/v1/url/${urlId}`;
     const newShortUrl = await new Url({
       urlId,
       originalUrl: url,
@@ -312,7 +312,7 @@ router.post("/auth/singleUse", isAuthenticated, async (req, res) => {
         .status(409)
         .json({ message: "link already exist", url: findUrl });
     }
-    const shortUrl = `${base}/${urlId}`;
+    const shortUrl = `${base}/api/v1/url/${urlId}`;
     const newShortUrl = await new Url({
       urlId,
       originalUrl: url,
