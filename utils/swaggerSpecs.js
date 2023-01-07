@@ -26,7 +26,25 @@ const specs = swaggerJsDoc({
       name: "Url",
       description: "Operation on urls",
     },
+    {
+      name: "User",
+      description: "Operation on users",
+    },
   ],
   apis: ["./routes/*.js"],
+  // components: {
+  //   securitySchemes: {
+  //     bearerAuth: {
+  //       type: "http",
+  //       scheme: "bearer",
+  //       bearerFormat: "JWT",
+  //     },
+  //   },
+  // }
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
 });
 module.exports = specs;

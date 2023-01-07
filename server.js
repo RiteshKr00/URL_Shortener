@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { connectDB } = require("./config/db");
 const urlroutes = require("./routes/url");
+const authroutes = require("./routes/auth");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpecs = require("./utils/swaggerSpecs");
 require("dotenv").config();
@@ -13,7 +14,8 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 connectDB();
 
 //routes
-app.use("/api/v1/", urlroutes);
+app.use("/api/v1/url/", urlroutes);
+app.use("/api/v1/auth/", authroutes);
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Server is runnng at port", process.env.PORT);
