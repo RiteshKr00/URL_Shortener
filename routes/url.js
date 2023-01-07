@@ -5,6 +5,40 @@ const { nanoid } = require("nanoid");
 
 const Url = require("../models/urlModel");
 const base = process.env.base_url;
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Url:
+ *        type: object
+ *        required:
+ *          - urlId
+ *          - originalUrl
+ *          - shortUrl
+ *        properties:
+ *          urlId:
+ *            type: STRING
+ *            description: Generated Nanoid of the url
+ *          originalUrl:
+ *            type: STRING
+ *            description: Original url
+ *          shortUrl:
+ *            type: STRING
+ *            description: short url
+ *          clicks:
+ *            type: INTEGER
+ *            description: Number of times link clicked
+ *          expiresAt:
+ *            type: DATE
+ *            description: Expiry time of link
+ *          singleUse:
+ *            type: BOOLEAN
+ *            description: flag for single use links
+ */
+
+
+
 router.post("/short", async (req, res) => {
   try {
     const { url } = req.body;
