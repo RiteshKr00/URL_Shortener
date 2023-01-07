@@ -207,7 +207,7 @@ router.get("/:urlId", async (req, res) => {
           { $inc: { clicks: 1 } }
         );
       }
-      return res.redirect(url.originalUrl);
+      return res.status(302).redirect(url.originalUrl);
     } else res.status(404).json({ message: "Url Not found" });
   } catch (error) {
     res.status(500).json({ message: `Server Error + ${error.message}` });

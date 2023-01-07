@@ -17,6 +17,7 @@ connectDB();
 app.use("/api/v1/url/", urlroutes);
 app.use("/api/v1/auth/", authroutes);
 
-app.listen(process.env.PORT || 8080, () => {
+let server = app.listen(process.env.PORT || 8080, () => {
   console.log("Server is runnng at port", process.env.PORT);
 });
+module.exports = server;

@@ -157,7 +157,7 @@ router.post("/signin", async (req, res) => {
       password,
       existingUser.password
     );
-
+    console.log(passwordMatched + "+++>");
     if (!passwordMatched) {
       return res.status(400).send({
         message: "Email or Password is Incorrect!",
