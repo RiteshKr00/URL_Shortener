@@ -5,6 +5,7 @@ const urlroutes = require("./routes/url");
 const authroutes = require("./routes/auth");
 const swaggerUI = require("swagger-ui-express");
 const swaggerSpecs = require("./utils/swaggerSpecs");
+const checkCollisionPercentage = require("./utils/checkCollisionPercentage");
 require("dotenv").config();
 
 //middlewares
@@ -16,6 +17,8 @@ connectDB();
 //routes
 app.use("/api/v1/url/", urlroutes);
 app.use("/api/v1/auth/", authroutes);
+//collision percentage
+// checkCollisionPercentage();
 
 let server = app.listen(process.env.PORT || 8080, () => {
   console.log("Server is runnng at port", process.env.PORT);

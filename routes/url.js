@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 require("dotenv").config();
 const { nanoid } = require("nanoid");
-
 const Url = require("../models/urlModel");
 const isAuthenticated = require("../middlewares/authJwt");
+const hashing = require("../utils/hashing");
 const base = process.env.base_url;
 
 /**
@@ -84,7 +84,10 @@ const base = process.env.base_url;
 router.post("/short", async (req, res) => {
   try {
     const { url } = req.body;
-    const urlId = nanoid(7);
+    const uid = hashing(url);
+    console.log("url is", uid);
+    // const urlId = nanoid(7);
+    const urlId = hashing(url);
     //if already exist
     const findUrl = await Url.findOne({ originalUrl: url });
     if (findUrl) {
@@ -137,7 +140,7 @@ router.post("/singleUse", async (req, res) => {
   try {
     const { url } = req.body;
     console.log(url);
-    const urlId = nanoid(7);
+    const urlId = hashing(url);
     //if already exist
     const findUrl = await Url.findOne({ originalUrl: url });
     if (findUrl) {
@@ -248,7 +251,7 @@ router.get("/:urlId", async (req, res) => {
 router.post("/auth/short", isAuthenticated, async (req, res) => {
   try {
     const { url } = req.body;
-    const urlId = nanoid(7);
+    const urlId = hashing(url);
     //if already exist
     const findUrl = await Url.findOne({ originalUrl: url });
     if (findUrl) {
@@ -304,7 +307,7 @@ router.post("/auth/singleUse", isAuthenticated, async (req, res) => {
   try {
     const { url } = req.body;
     console.log(url);
-    const urlId = nanoid(7);
+    const urlId = hashing(url);
     //if already exist
     const findUrl = await Url.findOne({ originalUrl: url });
     if (findUrl) {
